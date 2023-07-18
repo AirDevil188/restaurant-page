@@ -22,7 +22,7 @@ function createNavbar() {
     const hyperLinkTag = document.createElement("a");
     hyperLinkTag.href = "#";
     headerLogo.src = logo;
-    headerLogo.className = "header-logo";
+    headerLogo.id = "header-logo";
     headerLogo.alt = "An logo of Art Caffe";
 
     ulElement.appendChild(listedNavItem);

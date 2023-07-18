@@ -1,5 +1,10 @@
 /* generic website styles */
 
+:root {
+  --header-color: #000000;
+  --nav-a-color: #ffffff;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -14,4 +19,43 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
   margin: 0;
+}
+
+/* header and nav styles */
+
+.header {
+  background-color: var(--header-color);
+}
+
+header {
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+#header-logo {
+  width: 314px;
+  max-height: 200px;
+}
+
+/* navigation styling across all the breakpoints */
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--nav-a-color);
 }
