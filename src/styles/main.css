@@ -3,7 +3,7 @@
 :root {
   --header-color: #000000;
   --nav-a-color: #ffffff;
-  --nav-a-bg-mobile-devices-color: #9c6f44;
+  --nav-a-bg-mobile-devices-color: #563517;
 }
 
 html {
@@ -35,15 +35,15 @@ header {
 }
 
 #header-logo {
-  width: 214px;
-  max-height: 200px;
+  max-width: 314px;
+  max-height: 32px;
 }
 
 /* navigation styling across all the breakpoints */
 
 nav ul {
   display: flex;
-  gap: 2%;
+  gap: 1em;
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
@@ -83,13 +83,14 @@ nav li:first-child a {
 @media (min-width: 550px) {
   nav ul {
     justify-content: center;
-    gap: 1.2em;
+    gap: 0.5em;
   }
   nav li {
     flex-basis: auto;
     margin-bottom: 0;
   }
   nav a {
+    font-size: 1.2rem;
     color: var(--nav-a-color);
     background-color: transparent;
   }
@@ -105,6 +106,11 @@ nav li:first-child a {
     justify-content: flex-end;
     gap: none;
   }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+
   nav li:first-child {
     flex-basis: auto;
     margin: 0 auto;

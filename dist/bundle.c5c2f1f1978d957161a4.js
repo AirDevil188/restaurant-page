@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _assets_logo_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/logo.svg */ "./src/assets/logo.svg");
+/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/logo.png */ "./src/assets/logo.png");
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home */ "./src/pages/home.js");
 /* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu */ "./src/pages/menu.js");
 /* harmony import */ var _contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contact */ "./src/pages/contact.js");
@@ -112,25 +112,22 @@ __webpack_require__.r(__webpack_exports__);
 
 function createHeader() {
   var header = document.createElement("header");
-  var logoImage = document.createElement("img");
-  logoImage.src = _assets_logo_svg__WEBPACK_IMPORTED_MODULE_0__;
-  header.appendChild(logoImage).className = "logo-header";
+  header.className = "header";
   header.appendChild(createNavbar());
   return header;
 }
 function createNavbar() {
-  var headerElement = document.querySelector("header");
   var nav = document.createElement("nav");
   var ulElement = document.createElement("ul");
-  headerElement.appendChild(navElement);
-  navElement.appendChild(ulElement);
+  nav.appendChild(ulElement);
   for (var i = 0; i <= 4; i++) {
     var listedNavItem = document.createElement("li");
+    listedNavItem.id = "menu-navigation";
     var headerLogo = document.createElement("img");
     var hyperLinkTag = document.createElement("a");
     hyperLinkTag.href = "#";
-    headerLogo.src = headerLogoImage;
-    headerLogo.className = "header-logo";
+    headerLogo.src = _assets_logo_png__WEBPACK_IMPORTED_MODULE_0__;
+    headerLogo.id = "header-logo";
     headerLogo.alt = "An logo of Art Caffe";
     ulElement.appendChild(listedNavItem);
     switch (i) {
@@ -158,15 +155,20 @@ function createNavbar() {
   }
   return nav;
 }
-var clearMainContainer = function clearMainContainer() {
-  var mainContentContainer = document.querySelector("#main-container");
-  mainContentContainer.textContent = "";
-};
 function createMainContainer() {
   var mainContentContainer = document.createElement("div");
   mainContentContainer.id = "main-container";
   return mainContentContainer;
 }
+function createHeaderContainer() {
+  var headerContainer = document.createElement("div");
+  headerContainer.className = "header";
+  return headerContainer;
+}
+var clearMainContainer = function clearMainContainer() {
+  var mainContentContainer = document.querySelector("#main-container");
+  mainContentContainer.textContent = "";
+};
 function createFooter() {
   var footer = document.createElement("footer");
   var copyright = document.createElement("p");
@@ -175,25 +177,30 @@ function createFooter() {
   return footer;
 }
 function loadWebsite() {
-  var contentContainer = document.getElementById("content");
-  contentContainer.appendChild(createHeader());
+  var body = document.querySelector("body");
+  var contentContainer = document.createElement("div");
+  contentContainer.id = "content";
+  body.appendChild(createHeaderContainer());
+  var headerContainer = document.querySelector(".header");
+  headerContainer.appendChild(createHeader());
+  body.appendChild(contentContainer);
   contentContainer.appendChild(createMainContainer());
   contentContainer.appendChild(createFooter());
-  var buttons = document.querySelectorAll(".button-nav");
-  buttons.forEach(function (button) {
+  var menuNavigation = document.querySelectorAll("#menu-navigation");
+  menuNavigation.forEach(function (button) {
     console.log(button);
     button.addEventListener("click", function (e) {
       console.log(e.target.id);
-      switch (e.target.id) {
-        case "menu":
+      switch (e.target.textContent) {
+        case "Menu":
           clearMainContainer();
           (0,_menu__WEBPACK_IMPORTED_MODULE_2__["default"])();
           break;
-        case "contact":
+        case "Contact":
           clearMainContainer();
           (0,_contact__WEBPACK_IMPORTED_MODULE_3__["default"])();
           break;
-        case "home":
+        case "Home":
           clearMainContainer();
           (0,_home__WEBPACK_IMPORTED_MODULE_1__["default"])();
       }
@@ -223,14 +230,134 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `body {
-  background-color: purple;
+___CSS_LOADER_EXPORT___.push([module.id, `/* generic website styles */
+
+:root {
+  --header-color: #000000;
+  --nav-a-color: #ffffff;
+  --nav-a-bg-mobile-devices-color: #563517;
 }
 
-.hidden {
-  display: none;
+html {
+  box-sizing: border-box;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;EACE,wBAAwB;AAC1B;;AAEA;EACE,aAAa;AACf","sourcesContent":["body {\n  background-color: purple;\n}\n\n.hidden {\n  display: none;\n}\n"],"sourceRoot":""}]);
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* header and nav styles */
+
+.header {
+  background-color: var(--header-color);
+}
+
+header {
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+#header-logo {
+  max-width: 314px;
+  max-height: 32px;
+}
+
+/* navigation styling across all the breakpoints */
+
+nav ul {
+  display: flex;
+  gap: 1em;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  /* I have selected 48% for flex basis because I want to have two li elements per line. */
+  flex-basis: 48%;
+  margin-bottom: 0.6rem;
+}
+
+nav li:first-child {
+  /* in order for logo to be on his own line on mobile devices we set a flex-basis selector to 100% */
+  flex-basis: 100%;
+  text-align: center;
+}
+
+nav a {
+  display: block;
+  padding: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--nav-a-color);
+  background-color: var(--nav-a-bg-mobile-devices-color);
+  text-align: center;
+}
+
+nav li:first-child a {
+  background-color: transparent;
+}
+
+@media (min-width: 550px) {
+  nav ul {
+    justify-content: center;
+    gap: 0.5em;
+  }
+  nav li {
+    flex-basis: auto;
+    margin-bottom: 0;
+  }
+  nav a {
+    font-size: 1.2rem;
+    color: var(--nav-a-color);
+    background-color: transparent;
+  }
+  nav a:hover {
+    background-color: transparent;
+  }
+}
+
+/* for desktop */
+@media (min-width: 800px) {
+  /* navigation for logo in the center */
+  nav ul {
+    justify-content: flex-end;
+    gap: none;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+
+  nav li:first-child {
+    flex-basis: auto;
+    margin: 0 auto;
+    order: 2;
+  }
+  nav li:nth-child(2),
+  nav li:nth-child(3) {
+    order: 1;
+  }
+  nav li:nth-child(4),
+  nav li:nth-child(5) {
+    order: 3;
+  }
+}
+`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA,2BAA2B;;AAE3B;EACE,uBAAuB;EACvB,sBAAsB;EACtB,wCAAwC;AAC1C;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,4DAA4D;EAC5D,UAAU;EACV,SAAS;AACX;;AAEA,0BAA0B;;AAE1B;EACE,qCAAqC;AACvC;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;AAClB;;AAEA,kDAAkD;;AAElD;EACE,aAAa;EACb,QAAQ;EACR,mBAAmB;EACnB,yBAAyB;EACzB,mBAAmB;EACnB,qBAAqB;EACrB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,wFAAwF;EACxF,eAAe;EACf,qBAAqB;AACvB;;AAEA;EACE,mGAAmG;EACnG,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,aAAa;EACb,kBAAkB;EAClB,qBAAqB;EACrB,yBAAyB;EACzB,iBAAiB;EACjB,yBAAyB;EACzB,sDAAsD;EACtD,kBAAkB;AACpB;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE;IACE,uBAAuB;IACvB,UAAU;EACZ;EACA;IACE,gBAAgB;IAChB,gBAAgB;EAClB;EACA;IACE,iBAAiB;IACjB,yBAAyB;IACzB,6BAA6B;EAC/B;EACA;IACE,6BAA6B;EAC/B;AACF;;AAEA,gBAAgB;AAChB;EACE,sCAAsC;EACtC;IACE,yBAAyB;IACzB,SAAS;EACX;;EAEA;IACE,iBAAiB;EACnB;;EAEA;IACE,gBAAgB;IAChB,cAAc;IACd,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;AACF","sourcesContent":["/* generic website styles */\n\n:root {\n  --header-color: #000000;\n  --nav-a-color: #ffffff;\n  --nav-a-bg-mobile-devices-color: #563517;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nbody {\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n  padding: 0;\n  margin: 0;\n}\n\n/* header and nav styles */\n\n.header {\n  background-color: var(--header-color);\n}\n\nheader {\n  max-width: 1200px;\n  padding: 1rem;\n  margin: 0 auto;\n}\n\n#header-logo {\n  max-width: 314px;\n  max-height: 32px;\n}\n\n/* navigation styling across all the breakpoints */\n\nnav ul {\n  display: flex;\n  gap: 1em;\n  flex-flow: row wrap;\n  justify-content: flex-end;\n  align-items: center;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nnav li {\n  /* I have selected 48% for flex basis because I want to have two li elements per line. */\n  flex-basis: 48%;\n  margin-bottom: 0.6rem;\n}\n\nnav li:first-child {\n  /* in order for logo to be on his own line on mobile devices we set a flex-basis selector to 100% */\n  flex-basis: 100%;\n  text-align: center;\n}\n\nnav a {\n  display: block;\n  padding: 1rem;\n  border-radius: 5px;\n  text-decoration: none;\n  text-transform: uppercase;\n  font-size: 1.2rem;\n  color: var(--nav-a-color);\n  background-color: var(--nav-a-bg-mobile-devices-color);\n  text-align: center;\n}\n\nnav li:first-child a {\n  background-color: transparent;\n}\n\n@media (min-width: 550px) {\n  nav ul {\n    justify-content: center;\n    gap: 0.5em;\n  }\n  nav li {\n    flex-basis: auto;\n    margin-bottom: 0;\n  }\n  nav a {\n    font-size: 1.2rem;\n    color: var(--nav-a-color);\n    background-color: transparent;\n  }\n  nav a:hover {\n    background-color: transparent;\n  }\n}\n\n/* for desktop */\n@media (min-width: 800px) {\n  /* navigation for logo in the center */\n  nav ul {\n    justify-content: flex-end;\n    gap: none;\n  }\n\n  nav a {\n    font-size: 1.5rem;\n  }\n\n  nav li:first-child {\n    flex-basis: auto;\n    margin: 0 auto;\n    order: 2;\n  }\n  nav li:nth-child(2),\n  nav li:nth-child(3) {\n    order: 1;\n  }\n  nav li:nth-child(4),\n  nav li:nth-child(5) {\n    order: 3;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -677,13 +804,13 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/assets/logo.svg":
+/***/ "./src/assets/logo.png":
 /*!*****************************!*\
-  !*** ./src/assets/logo.svg ***!
+  !*** ./src/assets/logo.png ***!
   \*****************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "logo.svg";
+module.exports = __webpack_require__.p + "logo.png";
 
 /***/ })
 
@@ -803,14 +930,12 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
-/* harmony import */ var _assets_logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/logo.svg */ "./src/assets/logo.svg");
-/* harmony import */ var _pages_website__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/website */ "./src/pages/website.js");
+/* harmony import */ var _pages_website__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/website */ "./src/pages/website.js");
 
 
-
-(0,_pages_website__WEBPACK_IMPORTED_MODULE_2__["default"])();
+(0,_pages_website__WEBPACK_IMPORTED_MODULE_1__["default"])();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle.9c999cc16f39c15de3d4.js.map
+//# sourceMappingURL=bundle.c5c2f1f1978d957161a4.js.map
