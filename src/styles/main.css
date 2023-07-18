@@ -41,15 +41,12 @@ header {
 /* navigation styling across all the breakpoints */
 
 nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav li:first-child {
