@@ -2,6 +2,208 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/pages/contact.js":
+/*!******************************!*\
+  !*** ./src/pages/contact.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function createContactForm() {
+  var contactContainer = document.createElement("div");
+  contactContainer.classList.add("contact-container");
+  var contactFormElement = document.createElement("form");
+  var labelFirstName = document.createElement("label");
+  var inputFirstName = document.createElement("input");
+  var labelLastName = document.createElement("label");
+  var inputLastName = document.createElement("input");
+  var labelMessage = document.createElement("label");
+  var inputMessage = document.createElement("input");
+  var formButton = document.createElement("button");
+  contactContainer.appendChild(contactFormElement);
+  contactFormElement.appendChild(labelFirstName);
+  labelFirstName.appendChild(inputFirstName);
+  contactFormElement.appendChild(labelLastName);
+  labelLastName.appendChild(inputLastName);
+  contactFormElement.appendChild(labelMessage);
+  labelMessage.appendChild(inputMessage);
+  labelMessage.textContent = "Your message:";
+  return contactContainer;
+}
+function loadContact() {
+  var mainContentContainer = document.getElementById("main-container");
+  mainContentContainer.appendChild(createContactForm());
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadContact);
+
+/***/ }),
+
+/***/ "./src/pages/home.js":
+/*!***************************!*\
+  !*** ./src/pages/home.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function createHome() {
+  var homeContainer = document.createElement("div");
+  var testH1Home = document.createElement("h1");
+  testH1Home.textContent = "Home Page";
+  homeContainer.appendChild(testH1Home);
+  return homeContainer;
+}
+function loadHome() {
+  var mainContentContainer = document.getElementById("main-container");
+  mainContentContainer.appendChild(createHome());
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadHome);
+
+/***/ }),
+
+/***/ "./src/pages/menu.js":
+/*!***************************!*\
+  !*** ./src/pages/menu.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function createMenu() {
+  var menuContainer = document.createElement("div");
+  menuContainer.classList.add("menu-container");
+  var testH1Title = document.createElement("h1");
+  testH1Title.textContent = "Test for my website!";
+  menuContainer.appendChild(testH1Title);
+  return menuContainer;
+}
+function loadMenu() {
+  var mainContentContainer = document.getElementById("main-container");
+  mainContentContainer.appendChild(createMenu());
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadMenu);
+
+/***/ }),
+
+/***/ "./src/pages/website.js":
+/*!******************************!*\
+  !*** ./src/pages/website.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _assets_logo_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/logo.svg */ "./src/assets/logo.svg");
+/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home */ "./src/pages/home.js");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu */ "./src/pages/menu.js");
+/* harmony import */ var _contact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contact */ "./src/pages/contact.js");
+
+
+
+
+function createHeader() {
+  var header = document.createElement("header");
+  var logoImage = document.createElement("img");
+  logoImage.src = _assets_logo_svg__WEBPACK_IMPORTED_MODULE_0__;
+  header.appendChild(logoImage).className = "logo-header";
+  header.appendChild(createNavbar());
+  return header;
+}
+function createNavbar() {
+  var headerElement = document.querySelector("header");
+  var nav = document.createElement("nav");
+  var ulElement = document.createElement("ul");
+  headerElement.appendChild(navElement);
+  navElement.appendChild(ulElement);
+  for (var i = 0; i <= 4; i++) {
+    var listedNavItem = document.createElement("li");
+    var headerLogo = document.createElement("img");
+    var hyperLinkTag = document.createElement("a");
+    hyperLinkTag.href = "#";
+    headerLogo.src = headerLogoImage;
+    headerLogo.className = "header-logo";
+    headerLogo.alt = "An logo of Art Caffe";
+    ulElement.appendChild(listedNavItem);
+    switch (i) {
+      case 0:
+        listedNavItem.appendChild(hyperLinkTag);
+        hyperLinkTag.appendChild(headerLogo);
+        break;
+      case 1:
+        listedNavItem.appendChild(hyperLinkTag);
+        hyperLinkTag.textContent = "Home";
+        break;
+      case 2:
+        listedNavItem.appendChild(hyperLinkTag);
+        hyperLinkTag.textContent = "Menu";
+        break;
+      case 3:
+        listedNavItem.appendChild(hyperLinkTag);
+        hyperLinkTag.textContent = "About";
+        break;
+      case 4:
+        listedNavItem.appendChild(hyperLinkTag);
+        hyperLinkTag.textContent = "Contact";
+        break;
+    }
+  }
+  return nav;
+}
+var clearMainContainer = function clearMainContainer() {
+  var mainContentContainer = document.querySelector("#main-container");
+  mainContentContainer.textContent = "";
+};
+function createMainContainer() {
+  var mainContentContainer = document.createElement("div");
+  mainContentContainer.id = "main-container";
+  return mainContentContainer;
+}
+function createFooter() {
+  var footer = document.createElement("footer");
+  var copyright = document.createElement("p");
+  copyright.className = "copyright";
+  copyright.textContent = new Date().getFullYear();
+  return footer;
+}
+function loadWebsite() {
+  var contentContainer = document.getElementById("content");
+  contentContainer.appendChild(createHeader());
+  contentContainer.appendChild(createMainContainer());
+  contentContainer.appendChild(createFooter());
+  var buttons = document.querySelectorAll(".button-nav");
+  buttons.forEach(function (button) {
+    console.log(button);
+    button.addEventListener("click", function (e) {
+      console.log(e.target.id);
+      switch (e.target.id) {
+        case "menu":
+          clearMainContainer();
+          (0,_menu__WEBPACK_IMPORTED_MODULE_2__["default"])();
+          break;
+        case "contact":
+          clearMainContainer();
+          (0,_contact__WEBPACK_IMPORTED_MODULE_3__["default"])();
+          break;
+        case "home":
+          clearMainContainer();
+          (0,_home__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      }
+    });
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadWebsite);
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/main.css":
 /*!*******************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/main.css ***!
@@ -24,7 +226,11 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
   background-color: purple;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;EACE,wBAAwB;AAC1B","sourcesContent":["body {\n  background-color: purple;\n}\n"],"sourceRoot":""}]);
+
+.hidden {
+  display: none;
+}
+`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;EACE,wBAAwB;AAC1B;;AAEA;EACE,aAAa;AACf","sourcesContent":["body {\n  background-color: purple;\n}\n\n.hidden {\n  display: none;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -598,14 +804,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
 /* harmony import */ var _assets_logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/logo.svg */ "./src/assets/logo.svg");
+/* harmony import */ var _pages_website__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/website */ "./src/pages/website.js");
 
 
-var contentContainer = document.getElementById("content");
-var headerLogo = document.createElement("img");
-headerLogo.src = _assets_logo_svg__WEBPACK_IMPORTED_MODULE_1__;
-contentContainer.appendChild(headerLogo);
+
+(0,_pages_website__WEBPACK_IMPORTED_MODULE_2__["default"])();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle.57928e08044fcc376840.js.map
+//# sourceMappingURL=bundle.9c999cc16f39c15de3d4.js.map
