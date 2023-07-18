@@ -53,13 +53,6 @@ function createNavbar() {
   return nav;
 }
 
-function createMainContainer() {
-  const mainContentContainer = document.createElement("div");
-  mainContentContainer.id = "main-container";
-
-  return mainContentContainer;
-}
-
 function createHeaderContainer() {
   const headerContainer = document.createElement("div");
   headerContainer.className = "header";
@@ -67,9 +60,10 @@ function createHeaderContainer() {
   return headerContainer;
 }
 
-const clearMainContainer = () => {
-  const mainContentContainer = document.querySelector("#main-container");
-  mainContentContainer.textContent = "";
+const clearContentContainer = () => {
+  const contentContainer = document.querySelector("#content");
+
+  contentContainer.textContent = "";
 };
 
 function createFooter() {
@@ -91,7 +85,6 @@ function loadWebsite() {
   const headerContainer = document.querySelector(".header");
   headerContainer.appendChild(createHeader());
   body.appendChild(contentContainer);
-  contentContainer.appendChild(createMainContainer());
   contentContainer.appendChild(createFooter());
 
   const menuNavigation = document.querySelectorAll("#menu-navigation");
@@ -102,16 +95,16 @@ function loadWebsite() {
 
       switch (e.target.textContent) {
         case "Menu":
-          clearMainContainer();
+          clearContentContainer();
           loadMenu();
           break;
         case "Contact":
-          clearMainContainer();
+          clearContentContainer();
           loadContact();
           break;
 
         case "Home":
-          clearMainContainer();
+          clearContentContainer();
           loadHome();
       }
     });

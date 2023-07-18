@@ -9,8 +9,8 @@ function createHome() {
 }
 
 function loadHome() {
-  const mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createHome());
+  const contentContainer = document.querySelector("#content");
+  contentContainer.appendChild(createHome());
 }
 
 export default loadHome;

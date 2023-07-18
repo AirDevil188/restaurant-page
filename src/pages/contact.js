@@ -1,6 +1,10 @@
 function createContactForm() {
+  const contactSection = document.createElement("section");
+  contactSection.id = "contact";
+
   const contactContainer = document.createElement("div");
   contactContainer.classList.add("contact-container");
+  contactSection.appendChild(contactContainer);
 
   const contactFormElement = document.createElement("form");
 
@@ -18,21 +22,24 @@ function createContactForm() {
   contactContainer.appendChild(contactFormElement);
 
   contactFormElement.appendChild(labelFirstName);
+  labelFirstName.textContent = "First Name:";
   labelFirstName.appendChild(inputFirstName);
 
   contactFormElement.appendChild(labelLastName);
+  labelLastName.textContent = "Last Name:";
   labelLastName.appendChild(inputLastName);
 
   contactFormElement.appendChild(labelMessage);
-  labelMessage.appendChild(inputMessage);
   labelMessage.textContent = "Your message:";
+  labelMessage.appendChild(inputMessage);
 
-  return contactContainer;
+  return contactSection;
 }
 
 function loadContact() {
-  const mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createContactForm());
+  const contentContainer = document.querySelector("#content");
+
+  contentContainer.appendChild(createContactForm());
 }
 
 export default loadContact;

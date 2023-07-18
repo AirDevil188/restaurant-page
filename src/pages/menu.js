@@ -12,8 +12,8 @@ function createMenu() {
 }
 
 function loadMenu() {
-  const mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createMenu());
+  const contentContainer = document.querySelector("#content");
+  contentContainer.appendChild(createMenu());
 }
 
 export default loadMenu;
