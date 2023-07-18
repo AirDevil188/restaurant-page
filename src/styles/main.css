@@ -59,3 +59,24 @@ nav a {
   font-size: 1.2rem;
   color: var(--nav-a-color);
 }
+
+/* for desktop */
+@media (min-width: 800px) {
+  /* navigation for logo in the center */
+  nav ul {
+    justify-content: flex-end;
+  }
+  nav li:first-child {
+    flex-basis: auto;
+    margin: 0 auto;
+    order: 2;
+  }
+  nav li:nth-child(2),
+  nav li:nth-child(3) {
+    order: 1;
+  }
+  nav li:nth-child(4),
+  nav li:nth-child(5) {
+    order: 3;
+  }
+}
