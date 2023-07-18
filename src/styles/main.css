@@ -3,6 +3,7 @@
 :root {
   --header-color: #000000;
   --nav-a-color: #ffffff;
+  --nav-a-bg-mobile-devices-color: #9c6f44;
 }
 
 html {
@@ -34,7 +35,7 @@ header {
 }
 
 #header-logo {
-  width: 314px;
+  width: 214px;
   max-height: 200px;
 }
 
@@ -42,11 +43,19 @@ header {
 
 nav ul {
   display: flex;
+  gap: 2%;
   flex-flow: row wrap;
   justify-content: flex-end;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+nav li {
+  /* I have selected 48% for flex basis because I want to have two li elements per line. */
+  flex-basis: 48%;
+  margin-bottom: 0.6rem;
 }
 
 nav li:first-child {
@@ -57,10 +66,18 @@ nav li:first-child {
 
 nav a {
   display: block;
+  padding: 1rem;
+  border-radius: 5px;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
   color: var(--nav-a-color);
+  background-color: var(--nav-a-bg-mobile-devices-color);
+  text-align: center;
+}
+
+nav li:first-child a {
+  background-color: transparent;
 }
 
 @media (min-width: 550px) {
@@ -86,6 +103,7 @@ nav a {
   /* navigation for logo in the center */
   nav ul {
     justify-content: flex-end;
+    gap: none;
   }
   nav li:first-child {
     flex-basis: auto;
