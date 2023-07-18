@@ -52,12 +52,36 @@ nav ul {
   justify-content: flex-end;
 }
 
+nav li:first-child {
+  /* in order for logo to be on his own line on mobile devices we set a flex-basis selector to 100% */
+  flex-basis: 100%;
+  text-align: center;
+}
+
 nav a {
   display: block;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 1.2rem;
   color: var(--nav-a-color);
+}
+
+@media (min-width: 550px) {
+  nav ul {
+    justify-content: center;
+    gap: 1.2em;
+  }
+  nav li {
+    flex-basis: auto;
+    margin-bottom: 0;
+  }
+  nav a {
+    color: var(--nav-a-color);
+    background-color: transparent;
+  }
+  nav a:hover {
+    background-color: transparent;
+  }
 }
 
 /* for desktop */
