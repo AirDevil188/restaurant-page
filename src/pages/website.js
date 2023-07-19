@@ -72,6 +72,7 @@ function createFooter() {
   const copyright = document.createElement("p");
   copyright.className = "copyright";
   copyright.textContent = new Date().getFullYear();
+  footer.appendChild(copyright);
 
   return footer;
 }
@@ -85,7 +86,7 @@ function loadWebsite() {
   const headerContainer = document.querySelector(".header");
   headerContainer.appendChild(createHeader());
   body.appendChild(contentContainer);
-  contentContainer.appendChild(createFooter());
+  body.appendChild(createFooter());
 
   const menuNavigation = document.querySelectorAll("#menu-navigation");
   menuNavigation.forEach((button) => {
