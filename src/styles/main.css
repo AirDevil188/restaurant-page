@@ -6,6 +6,7 @@
   --nav-a-bg-mobile-devices-color: #563517;
   --nav-a-hover-text-color: #9c6f44;
   --content-separator-color: #9c6f44;
+  --border-color: #9c6f44;
 }
 
 html {
@@ -18,7 +19,7 @@ html {
   box-sizing: inherit;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap");
 
 body {
   font-family: "Roboto, Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -40,12 +41,9 @@ body {
 }
 
 section {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
   max-width: 1200px;
-  height: 100%;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.1rem;
 }
 
 section h2 {
@@ -57,8 +55,7 @@ section h2 {
 
 .second-column {
   display: flex;
-  height: 100vh;
-  flex-flow: column wrap;
+  flex-flow: column;
   align-items: center;
   gap: 50px;
 }
@@ -72,11 +69,12 @@ section h2 {
 }
 
 section p {
+  padding: 1rem;
   font-family: "Roboto";
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 0.2rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -148,26 +146,90 @@ nav li:first-child a {
   align-content: center;
 }
 
-input {
-  display: block;
-}
-
-label {
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-style: italic;
-}
-
-textarea {
-  resize: none;
-}
+/* form */
 
 .form-container form {
   padding: 1rem;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+}
+
+input {
+  display: block;
+  margin-top: 1px;
+  border: 1px solid var(--border-color);
+}
+
+label {
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-family: "Dancing Spirit", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+
+textarea {
+  display: block;
+  max-width: 220px;
+  margin-top: 1px;
+  border: 1px solid var(--border-color);
+  resize: none;
+}
+
+.form-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  border: 1px solid var(--border-color);
+  font-family: "Dancing Spirit", cursive;
+  width: 150px;
+  height: 33px;
+}
+
+fieldset {
+  width: 100%;
+  border-color: var(--border-color);
+}
+
+/* contact icons and information */
+.contact-icons-ul {
+  display: flex;
+  cursor: pointer;
+  flex-flow: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  gap: 10px;
+}
+
+.contact-li {
+  display: flex;
+  cursor: pointer;
+  flex-flow: column;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  gap: 10px;
+}
+.para-contact-icons {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.para-quote {
+  font-family: "Dancing Script", cursive;
+  font-weight: 300;
+  font-size: 2.2rem;
+  text-align: center;
+  letter-spacing: 0;
 }
 
 /* for tablet */
@@ -192,6 +254,21 @@ textarea {
 
 /* for desktop */
 @media (min-width: 800px) {
+  /* general styles */
+  section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  section p {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  /* navbar */
   /* navigation for logo in the center */
   nav ul {
     justify-content: flex-end;
@@ -214,5 +291,26 @@ textarea {
   nav li:nth-child(4),
   nav li:nth-child(5) {
     order: 3;
+  }
+
+  /* contact page section */
+
+  /* form */
+  .form-container form {
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  fieldset {
+    width: 700px;
+    padding: 2rem;
+  }
+
+  textarea {
+    max-width: 100%;
+  }
+
+  .contact-icons-ul {
+    flex-flow: row nowrap;
   }
 }

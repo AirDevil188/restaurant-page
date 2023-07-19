@@ -13,29 +13,98 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function createContactForm() {
-  var contactContainer = document.createElement("div");
-  contactContainer.classList.add("contact-container");
+  var contactSection = document.createElement("section");
+  contactSection.id = "contact";
+  var firstColumn = document.createElement("div");
+  contactSection.appendChild(firstColumn);
+  var secondColumn = document.createElement("div");
+  secondColumn.className = "second-column";
+  var contactH2 = document.createElement("h2");
+  secondColumn.appendChild(contactH2);
+  contactH2.textContent = "Contact Us";
+  contactSection.appendChild(secondColumn);
+  var contactIcon = document.createElement("span");
+  contactIcon.className = "material-symbols-outlined";
+  contactIcon.textContent = "contact_phone";
+  secondColumn.appendChild(contactIcon);
+  var contentSeparator = document.createElement("div");
+  contentSeparator.className = "separator";
+  secondColumn.appendChild(contentSeparator);
+  var para = document.createElement("p");
+  secondColumn.appendChild(para);
+  para.textContent = "Do you have a question? Or maybe you just want to make a reservation? Have no worries, we are here for you! You can send us an email or just call us! ";
+  var formContainer = document.createElement("div");
+  formContainer.classList.add("form-container");
+  secondColumn.appendChild(formContainer);
   var contactFormElement = document.createElement("form");
+  contactFormElement.setAttribute("method", "post");
+  var fieldset = document.createElement("fieldset");
   var labelFirstName = document.createElement("label");
   var inputFirstName = document.createElement("input");
   var labelLastName = document.createElement("label");
   var inputLastName = document.createElement("input");
+  var labelUserEmail = document.createElement("label");
+  var inputUserEmail = document.createElement("input");
   var labelMessage = document.createElement("label");
-  var inputMessage = document.createElement("input");
+  var textAreaMessage = document.createElement("textarea");
   var formButton = document.createElement("button");
-  contactContainer.appendChild(contactFormElement);
+  formButton.textContent = "SUBMIT";
+  formContainer.appendChild(fieldset);
+  fieldset.appendChild(contactFormElement);
   contactFormElement.appendChild(labelFirstName);
+  labelFirstName.textContent = "First Name:";
+  labelFirstName.setAttribute("for", "first_name");
   labelFirstName.appendChild(inputFirstName);
+  inputFirstName.setAttribute("type", "text");
+  inputFirstName.id = "first_name";
+  setAttributes(inputFirstName, {
+    minlength: 3,
+    name: "first_name",
+    required: ""
+  });
   contactFormElement.appendChild(labelLastName);
+  labelLastName.textContent = "Last Name:";
+  labelLastName.setAttribute("for", "last_name");
   labelLastName.appendChild(inputLastName);
+  inputLastName.setAttribute("type", "text");
+  inputLastName.id = "last_name";
+  setAttributes(inputLastName, {
+    minlength: 3,
+    name: "last_name",
+    required: ""
+  });
+  contactFormElement.appendChild(labelUserEmail);
+  labelUserEmail.textContent = "Email:";
+  labelUserEmail.setAttribute("for", "user_email");
+  labelUserEmail.appendChild(inputUserEmail);
+  inputUserEmail.setAttribute("type", "email");
+  inputUserEmail.id = "user_email";
+  setAttributes(inputUserEmail, {
+    name: "first_name",
+    required: ""
+  });
   contactFormElement.appendChild(labelMessage);
-  labelMessage.appendChild(inputMessage);
   labelMessage.textContent = "Your message:";
-  return contactContainer;
+  contactFormElement.appendChild(textAreaMessage);
+  textAreaMessage.id = "message";
+  setAttributes(textAreaMessage, {
+    rows: 3,
+    cols: 40,
+    required: ""
+  });
+  contactFormElement.appendChild(formButton);
+  var thirdColum = document.createElement("div");
+  contactSection.appendChild(thirdColum);
+  return contactSection;
+}
+function setAttributes(el, attrs) {
+  Object.keys(attrs).forEach(function (key) {
+    return el.setAttribute(key, attrs[key]);
+  });
 }
 function loadContact() {
-  var mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createContactForm());
+  var contentContainer = document.querySelector("#content");
+  contentContainer.appendChild(createContactForm());
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadContact);
 
@@ -59,8 +128,8 @@ function createHome() {
   return homeContainer;
 }
 function loadHome() {
-  var mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createHome());
+  var contentContainer = document.querySelector("#content");
+  contentContainer.appendChild(createHome());
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadHome);
 
@@ -85,8 +154,8 @@ function createMenu() {
   return menuContainer;
 }
 function loadMenu() {
-  var mainContentContainer = document.getElementById("main-container");
-  mainContentContainer.appendChild(createMenu());
+  var contentContainer = document.querySelector("#content");
+  contentContainer.appendChild(createMenu());
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadMenu);
 
@@ -155,25 +224,27 @@ function createNavbar() {
   }
   return nav;
 }
-function createMainContainer() {
-  var mainContentContainer = document.createElement("div");
-  mainContentContainer.id = "main-container";
-  return mainContentContainer;
-}
 function createHeaderContainer() {
   var headerContainer = document.createElement("div");
   headerContainer.className = "header";
   return headerContainer;
 }
-var clearMainContainer = function clearMainContainer() {
-  var mainContentContainer = document.querySelector("#main-container");
-  mainContentContainer.textContent = "";
+function createColumns() {
+  var firstColumn = document.createElement("div");
+  var secondColumn = document.createElement("div");
+  var thirdColum = document.createElement("div");
+  return firstColumn, secondColumn, thirdColum;
+}
+var clearContentContainer = function clearContentContainer() {
+  var contentContainer = document.querySelector("#content");
+  contentContainer.textContent = "";
 };
 function createFooter() {
   var footer = document.createElement("footer");
   var copyright = document.createElement("p");
   copyright.className = "copyright";
   copyright.textContent = new Date().getFullYear();
+  footer.appendChild(copyright);
   return footer;
 }
 function loadWebsite() {
@@ -184,8 +255,8 @@ function loadWebsite() {
   var headerContainer = document.querySelector(".header");
   headerContainer.appendChild(createHeader());
   body.appendChild(contentContainer);
-  contentContainer.appendChild(createMainContainer());
-  contentContainer.appendChild(createFooter());
+  contentContainer.appendChild(createColumns());
+  body.appendChild(createFooter());
   var menuNavigation = document.querySelectorAll("#menu-navigation");
   menuNavigation.forEach(function (button) {
     console.log(button);
@@ -193,19 +264,20 @@ function loadWebsite() {
       console.log(e.target.id);
       switch (e.target.textContent) {
         case "Menu":
-          clearMainContainer();
+          clearContentContainer();
           (0,_menu__WEBPACK_IMPORTED_MODULE_2__["default"])();
           break;
         case "Contact":
-          clearMainContainer();
+          clearContentContainer();
           (0,_contact__WEBPACK_IMPORTED_MODULE_3__["default"])();
           break;
         case "Home":
-          clearMainContainer();
+          clearContentContainer();
           (0,_home__WEBPACK_IMPORTED_MODULE_1__["default"])();
       }
     });
   });
+  (0,_home__WEBPACK_IMPORTED_MODULE_1__["default"])();
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadWebsite);
 
@@ -229,6 +301,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `/* generic website styles */
 
@@ -236,6 +309,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* generic website styles */
   --header-color: #000000;
   --nav-a-color: #ffffff;
   --nav-a-bg-mobile-devices-color: #563517;
+  --nav-a-hover-text-color: #9c6f44;
+  --content-separator-color: #9c6f44;
 }
 
 html {
@@ -249,9 +324,63 @@ html {
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto, Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 0;
   margin: 0;
+}
+
+/* google icons */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-size: 3.2rem;
+  color: #9c6f44;
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section h2 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  padding: 1rem;
+  font-family: "Dancing Script", cursive;
+}
+
+.second-column {
+  display: flex;
+  height: 100vh;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 50px;
+}
+
+.separator {
+  display: flex;
+  justify-content: flex-start;
+  width: 200px;
+  height: 2px;
+  background-color: var(--content-separator-color);
+}
+
+section p {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.2rem;
+  font-size: 1.3rem;
+  text-align: center;
 }
 
 /* header and nav styles */
@@ -275,7 +404,7 @@ header {
 
 nav ul {
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: center;
@@ -301,17 +430,50 @@ nav a {
   padding: 1rem;
   border-radius: 5px;
   text-decoration: none;
-  text-transform: uppercase;
   font-size: 1.2rem;
   color: var(--nav-a-color);
   background-color: var(--nav-a-bg-mobile-devices-color);
   text-align: center;
 }
 
+nav a:hover {
+  color: var(--nav-a-hover-text-color);
+}
+
 nav li:first-child a {
   background-color: transparent;
 }
 
+/* contact section of the page */
+#contact-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+input {
+  display: block;
+}
+
+label {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+textarea {
+  resize: none;
+}
+
+.form-container form {
+  padding: 1rem;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+/* for tablet */
 @media (min-width: 550px) {
   nav ul {
     justify-content: center;
@@ -357,7 +519,7 @@ nav li:first-child a {
     order: 3;
   }
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA,2BAA2B;;AAE3B;EACE,uBAAuB;EACvB,sBAAsB;EACtB,wCAAwC;AAC1C;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,4DAA4D;EAC5D,UAAU;EACV,SAAS;AACX;;AAEA,0BAA0B;;AAE1B;EACE,qCAAqC;AACvC;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;AAClB;;AAEA,kDAAkD;;AAElD;EACE,aAAa;EACb,QAAQ;EACR,mBAAmB;EACnB,yBAAyB;EACzB,mBAAmB;EACnB,qBAAqB;EACrB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,wFAAwF;EACxF,eAAe;EACf,qBAAqB;AACvB;;AAEA;EACE,mGAAmG;EACnG,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,aAAa;EACb,kBAAkB;EAClB,qBAAqB;EACrB,yBAAyB;EACzB,iBAAiB;EACjB,yBAAyB;EACzB,sDAAsD;EACtD,kBAAkB;AACpB;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE;IACE,uBAAuB;IACvB,UAAU;EACZ;EACA;IACE,gBAAgB;IAChB,gBAAgB;EAClB;EACA;IACE,iBAAiB;IACjB,yBAAyB;IACzB,6BAA6B;EAC/B;EACA;IACE,6BAA6B;EAC/B;AACF;;AAEA,gBAAgB;AAChB;EACE,sCAAsC;EACtC;IACE,yBAAyB;IACzB,SAAS;EACX;;EAEA;IACE,iBAAiB;EACnB;;EAEA;IACE,gBAAgB;IAChB,cAAc;IACd,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;AACF","sourcesContent":["/* generic website styles */\n\n:root {\n  --header-color: #000000;\n  --nav-a-color: #ffffff;\n  --nav-a-bg-mobile-devices-color: #563517;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nbody {\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n  padding: 0;\n  margin: 0;\n}\n\n/* header and nav styles */\n\n.header {\n  background-color: var(--header-color);\n}\n\nheader {\n  max-width: 1200px;\n  padding: 1rem;\n  margin: 0 auto;\n}\n\n#header-logo {\n  max-width: 314px;\n  max-height: 32px;\n}\n\n/* navigation styling across all the breakpoints */\n\nnav ul {\n  display: flex;\n  gap: 1em;\n  flex-flow: row wrap;\n  justify-content: flex-end;\n  align-items: center;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nnav li {\n  /* I have selected 48% for flex basis because I want to have two li elements per line. */\n  flex-basis: 48%;\n  margin-bottom: 0.6rem;\n}\n\nnav li:first-child {\n  /* in order for logo to be on his own line on mobile devices we set a flex-basis selector to 100% */\n  flex-basis: 100%;\n  text-align: center;\n}\n\nnav a {\n  display: block;\n  padding: 1rem;\n  border-radius: 5px;\n  text-decoration: none;\n  text-transform: uppercase;\n  font-size: 1.2rem;\n  color: var(--nav-a-color);\n  background-color: var(--nav-a-bg-mobile-devices-color);\n  text-align: center;\n}\n\nnav li:first-child a {\n  background-color: transparent;\n}\n\n@media (min-width: 550px) {\n  nav ul {\n    justify-content: center;\n    gap: 0.5em;\n  }\n  nav li {\n    flex-basis: auto;\n    margin-bottom: 0;\n  }\n  nav a {\n    font-size: 1.2rem;\n    color: var(--nav-a-color);\n    background-color: transparent;\n  }\n  nav a:hover {\n    background-color: transparent;\n  }\n}\n\n/* for desktop */\n@media (min-width: 800px) {\n  /* navigation for logo in the center */\n  nav ul {\n    justify-content: flex-end;\n    gap: none;\n  }\n\n  nav a {\n    font-size: 1.5rem;\n  }\n\n  nav li:first-child {\n    flex-basis: auto;\n    margin: 0 auto;\n    order: 2;\n  }\n  nav li:nth-child(2),\n  nav li:nth-child(3) {\n    order: 1;\n  }\n  nav li:nth-child(4),\n  nav li:nth-child(5) {\n    order: 3;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA,2BAA2B;;AAE3B;EACE,uBAAuB;EACvB,sBAAsB;EACtB,wCAAwC;EACxC,iCAAiC;EACjC,kCAAkC;AACpC;;AAEA;EACE,sBAAsB;AACxB;;AAEA;;;EAGE,mBAAmB;AACrB;;AAIA;EACE,oEAAoE;EACpE,UAAU;EACV,SAAS;AACX;;AAEA,iBAAiB;AACjB;EACE,kEAAkE;EAClE,iBAAiB;EACjB,cAAc;AAChB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,kCAAkC;EAClC,iBAAiB;EACjB,YAAY;EACZ,cAAc;EACd,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,yBAAyB;EACzB,aAAa;EACb,sCAAsC;AACxC;;AAEA;EACE,aAAa;EACb,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,SAAS;AACX;;AAEA;EACE,aAAa;EACb,2BAA2B;EAC3B,YAAY;EACZ,WAAW;EACX,gDAAgD;AAClD;;AAEA;EACE,qBAAqB;EACrB,kBAAkB;EAClB,gBAAgB;EAChB,sBAAsB;EACtB,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA,0BAA0B;;AAE1B;EACE,qCAAqC;AACvC;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;AAClB;;AAEA,kDAAkD;;AAElD;EACE,aAAa;EACb,UAAU;EACV,mBAAmB;EACnB,yBAAyB;EACzB,mBAAmB;EACnB,qBAAqB;EACrB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,wFAAwF;EACxF,eAAe;EACf,qBAAqB;AACvB;;AAEA;EACE,mGAAmG;EACnG,gBAAgB;EAChB,kBAAkB;AACpB;;AAEA;EACE,cAAc;EACd,aAAa;EACb,kBAAkB;EAClB,qBAAqB;EACrB,iBAAiB;EACjB,yBAAyB;EACzB,sDAAsD;EACtD,kBAAkB;AACpB;;AAEA;EACE,oCAAoC;AACtC;;AAEA;EACE,6BAA6B;AAC/B;;AAEA,gCAAgC;AAChC;EACE,aAAa;EACb,sBAAsB;EACtB,qBAAqB;AACvB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,eAAe;EACf,qBAAqB;EACrB,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;EACb,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA,eAAe;AACf;EACE;IACE,uBAAuB;IACvB,UAAU;EACZ;EACA;IACE,gBAAgB;IAChB,gBAAgB;EAClB;EACA;IACE,iBAAiB;IACjB,yBAAyB;IACzB,6BAA6B;EAC/B;EACA;IACE,6BAA6B;EAC/B;AACF;;AAEA,gBAAgB;AAChB;EACE,sCAAsC;EACtC;IACE,yBAAyB;IACzB,SAAS;EACX;;EAEA;IACE,iBAAiB;EACnB;;EAEA;IACE,gBAAgB;IAChB,cAAc;IACd,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;EACA;;IAEE,QAAQ;EACV;AACF","sourcesContent":["/* generic website styles */\n\n:root {\n  --header-color: #000000;\n  --nav-a-color: #ffffff;\n  --nav-a-bg-mobile-devices-color: #563517;\n  --nav-a-hover-text-color: #9c6f44;\n  --content-separator-color: #9c6f44;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\n@import url(\"https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap\");\n\nbody {\n  font-family: \"Roboto, Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n  padding: 0;\n  margin: 0;\n}\n\n/* google icons */\n.material-symbols-outlined {\n  font-variation-settings: \"FILL\" 0, \"wght\" 400, \"GRAD\" 0, \"opsz\" 48;\n  font-size: 3.2rem;\n  color: #9c6f44;\n}\n\n#content {\n  width: 100%;\n  height: 100%;\n  min-height: 100vh;\n}\n\nsection {\n  display: grid;\n  grid-template-columns: 1fr 2fr 1fr;\n  max-width: 1200px;\n  height: 100%;\n  margin: 0 auto;\n  padding: 0 1rem;\n}\n\nsection h2 {\n  font-size: 3rem;\n  text-transform: uppercase;\n  padding: 1rem;\n  font-family: \"Dancing Script\", cursive;\n}\n\n.second-column {\n  display: flex;\n  height: 100vh;\n  flex-flow: column wrap;\n  align-items: center;\n  gap: 50px;\n}\n\n.separator {\n  display: flex;\n  justify-content: flex-start;\n  width: 200px;\n  height: 2px;\n  background-color: var(--content-separator-color);\n}\n\nsection p {\n  font-family: \"Roboto\";\n  font-style: italic;\n  font-weight: 400;\n  letter-spacing: 0.2rem;\n  font-size: 1.3rem;\n  text-align: center;\n}\n\n/* header and nav styles */\n\n.header {\n  background-color: var(--header-color);\n}\n\nheader {\n  max-width: 1200px;\n  padding: 1rem;\n  margin: 0 auto;\n}\n\n#header-logo {\n  max-width: 314px;\n  max-height: 32px;\n}\n\n/* navigation styling across all the breakpoints */\n\nnav ul {\n  display: flex;\n  gap: 0.5em;\n  flex-flow: row wrap;\n  justify-content: flex-end;\n  align-items: center;\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nnav li {\n  /* I have selected 48% for flex basis because I want to have two li elements per line. */\n  flex-basis: 48%;\n  margin-bottom: 0.6rem;\n}\n\nnav li:first-child {\n  /* in order for logo to be on his own line on mobile devices we set a flex-basis selector to 100% */\n  flex-basis: 100%;\n  text-align: center;\n}\n\nnav a {\n  display: block;\n  padding: 1rem;\n  border-radius: 5px;\n  text-decoration: none;\n  font-size: 1.2rem;\n  color: var(--nav-a-color);\n  background-color: var(--nav-a-bg-mobile-devices-color);\n  text-align: center;\n}\n\nnav a:hover {\n  color: var(--nav-a-hover-text-color);\n}\n\nnav li:first-child a {\n  background-color: transparent;\n}\n\n/* contact section of the page */\n#contact-container {\n  display: flex;\n  flex-flow: column wrap;\n  align-content: center;\n}\n\ninput {\n  display: block;\n}\n\nlabel {\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  font-style: italic;\n}\n\ntextarea {\n  resize: none;\n}\n\n.form-container form {\n  padding: 1rem;\n  display: flex;\n  flex-flow: column wrap;\n  align-items: center;\n}\n\n/* for tablet */\n@media (min-width: 550px) {\n  nav ul {\n    justify-content: center;\n    gap: 0.5em;\n  }\n  nav li {\n    flex-basis: auto;\n    margin-bottom: 0;\n  }\n  nav a {\n    font-size: 1.2rem;\n    color: var(--nav-a-color);\n    background-color: transparent;\n  }\n  nav a:hover {\n    background-color: transparent;\n  }\n}\n\n/* for desktop */\n@media (min-width: 800px) {\n  /* navigation for logo in the center */\n  nav ul {\n    justify-content: flex-end;\n    gap: none;\n  }\n\n  nav a {\n    font-size: 1.5rem;\n  }\n\n  nav li:first-child {\n    flex-basis: auto;\n    margin: 0 auto;\n    order: 2;\n  }\n  nav li:nth-child(2),\n  nav li:nth-child(3) {\n    order: 1;\n  }\n  nav li:nth-child(4),\n  nav li:nth-child(5) {\n    order: 3;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -938,4 +1100,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle.c5c2f1f1978d957161a4.js.map
+//# sourceMappingURL=bundle.3f9c573ee1e692c093b7.js.map
