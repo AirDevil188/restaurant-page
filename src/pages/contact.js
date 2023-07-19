@@ -13,6 +13,11 @@ function createContactForm() {
 
   contactSection.appendChild(secondColumn);
 
+  const contactIcon = document.createElement("span");
+  contactIcon.className = "material-symbols-outlined";
+  contactIcon.textContent = "contact_phone";
+  secondColumn.appendChild(contactIcon);
+
   const contentSeparator = document.createElement("div");
   contentSeparator.className = "separator";
   secondColumn.appendChild(contentSeparator);
