@@ -15,9 +15,10 @@ function createWebsiteColumns() {
 
 function createAboutPage() {
   const aboutPageSection = document.querySelector("#about-container");
+  const secondColumn = document.querySelector(".second-column");
   const h2About = document.createElement("h2");
   h2About.textContent = "About Us";
-  aboutPageSection.appendChild(h2About);
+  secondColumn.appendChild(h2About);
 
   return aboutPageSection;
 }
