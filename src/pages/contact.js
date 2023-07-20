@@ -1,4 +1,4 @@
-function createContactForm() {
+function createContactPage() {
   const contactSection = document.createElement("section");
   contactSection.id = "contact";
 
@@ -24,7 +24,7 @@ function createContactForm() {
 
   const para = document.createElement("p");
   secondColumn.appendChild(para);
-  para.textContent = "Do you have a question? Or maybe you just want to make a reservation? Have no worries, we are here for you! You can send us an email or just call us! ";
+  para.textContent = "Do you have a question? Or maybe you just want to make an reservation? Have no worries, we are here for you! You can send us an email or just call us! ";
 
   const ul = document.createElement("ul");
   ul.className = "contact-icons-ul";
@@ -158,7 +158,7 @@ function setAttributes(el, attrs) {
 function loadContact() {
   const contentContainer = document.querySelector("#content");
 
-  contentContainer.appendChild(createContactForm());
+  contentContainer.appendChild(createContactPage());
 }
 
 export default loadContact;

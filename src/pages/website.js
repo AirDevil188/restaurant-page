@@ -2,6 +2,7 @@ import logo from "../assets/logo.png";
 import loadHome from "./home";
 import loadMenu from "./menu";
 import loadContact from "./contact";
+import loadAbout from "./about";
 
 function createHeader() {
   const header = document.createElement("header");
@@ -107,6 +108,12 @@ function loadWebsite() {
         case "Home":
           clearContentContainer();
           loadHome();
+          break;
+
+        case "About":
+          clearContentContainer();
+          loadAbout();
+          break;
       }
     });
   });
