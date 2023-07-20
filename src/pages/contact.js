@@ -1,17 +1,25 @@
-function createContactPage() {
-  const contactSection = document.createElement("section");
-  contactSection.id = "contact";
+function createWebsiteColumns() {
+  const contactPageSection = document.createElement("section");
+  contactPageSection.id = "contact";
 
   const firstColumn = document.createElement("div");
-  contactSection.appendChild(firstColumn);
-
+  contactPageSection.appendChild(firstColumn);
   const secondColumn = document.createElement("div");
+  contactPageSection.appendChild(secondColumn);
   secondColumn.className = "second-column";
+  const thirdColum = document.createElement("div");
+  contactPageSection.appendChild(thirdColum);
+
+  return contactPageSection;
+}
+
+function createContactContent() {
+  const contactPageSection = document.querySelector("#contact");
+  const secondColumn = document.querySelector(".second-column");
+
   const contactH2 = document.createElement("h2");
   secondColumn.appendChild(contactH2);
   contactH2.textContent = "Contact Us";
-
-  contactSection.appendChild(secondColumn);
 
   const contactIcon = document.createElement("span");
   contactIcon.className = "material-symbols-outlined";
@@ -24,7 +32,88 @@ function createContactPage() {
 
   const para = document.createElement("p");
   secondColumn.appendChild(para);
-  para.textContent = "Do you have a question? Or maybe you just want to make an reservation? Have no worries, we are here for you! You can send us an email or just call us! ";
+  para.textContent = "Do you have a question? Or maybe you just want to make a reservation? Have no worries, we are here for you! You can send us an email or just call us! ";
+
+  return contactPageSection;
+}
+
+function createContactForm() {
+  const contactPageSection = document.querySelector("#contact");
+  const secondColumn = document.querySelector(".second-column");
+
+  const formContainer = document.createElement("div");
+  formContainer.classList.add("form-container");
+  secondColumn.appendChild(formContainer);
+
+  const contactFormElement = document.createElement("form");
+  contactFormElement.setAttribute("method", "post");
+  const fieldset = document.createElement("fieldset");
+
+  const labelFirstName = document.createElement("label");
+  const inputFirstName = document.createElement("input");
+
+  const labelLastName = document.createElement("label");
+  const inputLastName = document.createElement("input");
+
+  const labelUserEmail = document.createElement("label");
+  const inputUserEmail = document.createElement("input");
+
+  const labelMessage = document.createElement("label");
+  const textAreaMessage = document.createElement("textarea");
+
+  const formButtonContainer = document.createElement("div");
+  formButtonContainer.className = "form-button-container";
+  const formButton = document.createElement("button");
+  formButton.className = "submit-button";
+  formButton.setAttribute("type", "submit");
+  formButton.textContent = "SUBMIT";
+
+  formContainer.appendChild(fieldset);
+  fieldset.appendChild(contactFormElement);
+
+  contactFormElement.appendChild(labelFirstName);
+  labelFirstName.textContent = "First Name: ";
+  labelFirstName.setAttribute("for", "first_name");
+  labelFirstName.appendChild(inputFirstName);
+
+  inputFirstName.setAttribute("type", "text");
+  inputFirstName.id = "first_name";
+  setAttributes(inputFirstName, { minlength: 3, name: "first_name", required: "" });
+
+  contactFormElement.appendChild(labelLastName);
+  labelLastName.textContent = "Last Name: ";
+  labelLastName.setAttribute("for", "last_name");
+  labelLastName.appendChild(inputLastName);
+
+  inputLastName.setAttribute("type", "text");
+  inputLastName.id = "last_name";
+  setAttributes(inputLastName, { minlength: 3, name: "last_name", required: "" });
+
+  contactFormElement.appendChild(labelUserEmail);
+  labelUserEmail.textContent = "Email: ";
+  labelUserEmail.setAttribute("for", "user_email");
+  labelUserEmail.appendChild(inputUserEmail);
+
+  inputUserEmail.setAttribute("type", "email");
+  inputUserEmail.id = "user_email";
+  setAttributes(inputUserEmail, { name: "first_name", required: "" });
+
+  contactFormElement.appendChild(labelMessage);
+  labelMessage.textContent = "Your message: ";
+  labelMessage.appendChild(textAreaMessage);
+
+  textAreaMessage.id = "message";
+  setAttributes(textAreaMessage, { rows: 3, cols: 40, required: "" });
+
+  fieldset.appendChild(formButtonContainer);
+  formButtonContainer.appendChild(formButton);
+
+  return contactPageSection;
+}
+
+function createContactDetailsInformation() {
+  const contactPageSection = document.querySelector("#contact");
+  const secondColumn = document.querySelector(".second-column");
 
   const ul = document.createElement("ul");
   ul.className = "contact-icons-ul";
@@ -69,72 +158,12 @@ function createContactPage() {
   locationLi.appendChild(locationIcon);
   locationLi.appendChild(paraLocation);
 
-  const formContainer = document.createElement("div");
-  formContainer.classList.add("form-container");
-  secondColumn.appendChild(formContainer);
+  return contactPageSection;
+}
 
-  const contactFormElement = document.createElement("form");
-  contactFormElement.setAttribute("method", "post");
-  const fieldset = document.createElement("fieldset");
-
-  const labelFirstName = document.createElement("label");
-  const inputFirstName = document.createElement("input");
-
-  const labelLastName = document.createElement("label");
-  const inputLastName = document.createElement("input");
-
-  const labelUserEmail = document.createElement("label");
-  const inputUserEmail = document.createElement("input");
-
-  const labelMessage = document.createElement("label");
-  const textAreaMessage = document.createElement("textarea");
-
-  const formButtonContainer = document.createElement("div");
-  formButtonContainer.className = "form-button-container";
-  const formButton = document.createElement("button");
-  formButton.className = "submit-button";
-  formButton.textContent = "SUBMIT";
-
-  formContainer.appendChild(fieldset);
-  fieldset.appendChild(contactFormElement);
-
-  contactFormElement.appendChild(labelFirstName);
-  labelFirstName.textContent = "First Name: ";
-  labelFirstName.setAttribute("for", "first_name");
-  labelFirstName.appendChild(inputFirstName);
-
-  inputFirstName.setAttribute("type", "text");
-  inputFirstName.id = "first_name";
-  setAttributes(inputFirstName, { minlength: 3, name: "first_name", required: "" });
-
-  contactFormElement.appendChild(labelLastName);
-  labelLastName.textContent = "Last Name: ";
-  labelLastName.setAttribute("for", "last_name");
-  labelLastName.appendChild(inputLastName);
-
-  inputLastName.setAttribute("type", "text");
-  inputLastName.id = "last_name";
-  setAttributes(inputLastName, { minlength: 3, name: "last_name", required: "" });
-
-  contactFormElement.appendChild(labelUserEmail);
-  labelUserEmail.textContent = "Email: ";
-  labelUserEmail.setAttribute("for", "user_email");
-  labelUserEmail.appendChild(inputUserEmail);
-
-  inputUserEmail.setAttribute("type", "email");
-  inputUserEmail.id = "user_email";
-  setAttributes(inputUserEmail, { name: "first_name", required: "" });
-
-  contactFormElement.appendChild(labelMessage);
-  labelMessage.textContent = "Your message: ";
-  labelMessage.appendChild(textAreaMessage);
-
-  textAreaMessage.id = "message";
-  setAttributes(textAreaMessage, { rows: 3, cols: 40, required: "" });
-
-  fieldset.appendChild(formButtonContainer);
-  formButtonContainer.appendChild(formButton);
-
+function createQuote() {
+  const contactPageSection = document.querySelector("#contact");
+  const secondColumn = document.querySelector(".second-column");
   const quoteContainer = document.createElement("div");
   const paraQuote = document.createElement("p");
 
@@ -145,10 +174,7 @@ function createContactPage() {
   secondColumn.appendChild(quoteContainer);
   quoteContainer.appendChild(paraQuote);
 
-  const thirdColum = document.createElement("div");
-  contactSection.appendChild(thirdColum);
-
-  return contactSection;
+  return contactPageSection;
 }
 
 function setAttributes(el, attrs) {
@@ -157,8 +183,11 @@ function setAttributes(el, attrs) {
 
 function loadContact() {
   const contentContainer = document.querySelector("#content");
-
-  contentContainer.appendChild(createContactPage());
+  contentContainer.appendChild(createWebsiteColumns());
+  contentContainer.appendChild(createContactContent());
+  contentContainer.appendChild(createContactDetailsInformation());
+  contentContainer.appendChild(createContactForm());
+  contentContainer.appendChild(createQuote());
 }
 
 export default loadContact;
