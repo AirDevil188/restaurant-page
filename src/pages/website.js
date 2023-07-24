@@ -118,7 +118,7 @@ function loadWebsite() {
     });
   });
 
-  loadMenu();
+  loadHome();
 }
 
 export default loadWebsite;
