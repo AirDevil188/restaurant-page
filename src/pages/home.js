@@ -3,6 +3,9 @@ import leftArrowImage from "../assets/left-arrow.svg";
 import slideImage1 from "../assets/slide-img-1.jpg";
 import slideImage2 from "../assets/slide-img-2.jpg";
 import slideImage3 from "../assets/slide-img-3.jpg";
+import homeImagePizza1 from "../assets/home-pizza-img-1.png";
+import homeImagePizza2 from "../assets/home-pizza-img-2.png";
+import homeImagePizza3 from "../assets/home-pizza-img-3.png";
 
 function createWebsiteColumns() {
   const homePageSection = document.querySelector("#home");
@@ -36,9 +39,9 @@ function appendCarousel() {
   carouselTrackContainer.className = "carousel-track-container";
 
   contentContainer.appendChild(carousel);
+  carousel.appendChild(carouselTrackContainer);
   carousel.appendChild(previousButton);
   previousButton.appendChild(leftArrow);
-  carousel.appendChild(carouselTrackContainer);
   carouselTrackContainer.appendChild(createCarouselUlAndLi(3));
   carousel.appendChild(nextButton);
   nextButton.appendChild(rightArrow);
@@ -176,7 +179,6 @@ function carouselFunctionality() {
     const currentDot = carouselDotsNavigation.querySelector(".current-slide");
     const targetIndex = allDots.findIndex((dot) => dot === targetDot);
     const targetSlide = slides[targetIndex];
-    console.log(targetIndex);
 
     moveToSlide(track, currentSlide, targetSlide);
     updateDots(currentDot, targetDot);
@@ -184,13 +186,241 @@ function carouselFunctionality() {
   });
 }
 
-function createHomeContent() {
+function createHomeDiscountContent() {
   const homePageSection = document.querySelector("#home");
   const secondColumn = document.querySelector(".second-column");
   const separator = document.createElement("div");
-  separator.className = "carousel-separator";
-  secondColumn.appendChild(separator);
+  const discountContainer = document.createElement("div");
+  const discountPara = document.createElement("p");
+  const homeImgPizza1 = document.createElement("img");
+  const homeImgPizza2 = document.createElement("img");
+  const homeImgPizza3 = document.createElement("img");
 
+  function createLiDiscount(arg) {
+    const discountElementsUl = document.createElement("ul");
+    discountElementsUl.className = "items-discount";
+    for (let i = 0; i < arg; i++) {
+      const liDiscount = document.createElement("li");
+      const regularPriceItem = document.createElement("p");
+      const discountedPriceItem = document.createElement("p");
+      regularPriceItem.className = "regular-price-item";
+      discountedPriceItem.className = "discount-price-item";
+      discountElementsUl.appendChild(liDiscount);
+
+      switch (i) {
+        case 0:
+          liDiscount.appendChild(homeImgPizza1);
+          liDiscount.appendChild(regularPriceItem);
+          liDiscount.appendChild(discountedPriceItem);
+          regularPriceItem.textContent = "12$";
+          discountedPriceItem.textContent = "9.00$";
+          break;
+        case 1:
+          liDiscount.appendChild(homeImgPizza2);
+          liDiscount.appendChild(regularPriceItem);
+          liDiscount.appendChild(discountedPriceItem);
+          regularPriceItem.textContent = "10$";
+          discountedPriceItem.textContent = "7.00$";
+          break;
+        case 2:
+          liDiscount.appendChild(homeImgPizza3);
+          liDiscount.appendChild(regularPriceItem);
+          liDiscount.appendChild(discountedPriceItem);
+          regularPriceItem.textContent = "10$";
+          discountedPriceItem.textContent = "5.00$";
+
+          break;
+      }
+    }
+    return discountElementsUl;
+  }
+
+  homeImgPizza1.src = homeImagePizza1;
+  homeImgPizza2.src = homeImagePizza2;
+  homeImgPizza3.src = homeImagePizza3;
+  homeImgPizza1.style.width = "200px";
+  homeImgPizza2.style.width = "200px";
+  homeImgPizza3.style.width = "200px";
+
+  discountContainer.className = "discount-container";
+  separator.className = "carousel-separator";
+  discountPara.className = "para-quote";
+
+  secondColumn.appendChild(separator);
+  secondColumn.appendChild(discountContainer);
+  discountContainer.appendChild(discountPara);
+  discountContainer.appendChild(createLiDiscount(3));
+
+  discountPara.textContent = "Pizza Day is here! Get cheesy on National Pizza Day with these money-saving deals! Order now!";
+
+  return homePageSection;
+}
+
+function createMakeReservation() {
+  const homePageSection = document.querySelector("#home");
+  const secondColumn = document.querySelector(".second-column");
+  const separator = document.createElement("div");
+  const reservationContainer = document.createElement("div");
+  const paraReservation = document.createElement("p");
+  const reservationButton = document.createElement("button");
+
+  separator.className = "carousel-separator";
+  reservationContainer.className = "reservation-container";
+  paraReservation.className = "para-quote";
+  reservationButton.classList.add("reservation-button", "open-button");
+
+  paraReservation.textContent = "Do you want to make a reservation? No problem, you can do that by filling out our online reservation form! ";
+  reservationButton.textContent = "RESERVE NOW";
+
+  secondColumn.appendChild(separator);
+  secondColumn.appendChild(reservationContainer);
+  reservationContainer.appendChild(paraReservation);
+  reservationContainer.appendChild(reservationButton);
+
+  return homePageSection;
+}
+
+function createReservationModal() {
+  const homePageSection = document.querySelector("#home");
+  const secondColumn = document.querySelector(".second-column");
+
+  const dialogModal = document.createElement("dialog");
+
+  dialogModal.id = "form-modal";
+  dialogModal.className = "modal";
+
+  secondColumn.appendChild(dialogModal);
+  dialogModal.appendChild(createFormReservation(5));
+  createSelectDropdown(6);
+  modalFunctions();
+
+  function createFormReservation(arg) {
+    const formModal = document.createElement("form");
+
+    for (let i = 0; i < arg; i++) {
+      const formGroup = document.createElement("div");
+      formGroup.className = "form-group";
+      formModal.appendChild(formGroup);
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      formGroup.appendChild(label);
+      formModal.setAttribute("method", "dialog");
+
+      switch (i) {
+        case 0:
+          label.setAttribute("for", "first_name");
+          label.textContent = "First Name";
+          label.appendChild(input);
+          setAttributes(input, { minlength: 3, name: "first_name", required: "" });
+          break;
+
+        case 1:
+          label.setAttribute("for", "last_name");
+          label.textContent = "Last Name";
+          label.appendChild(input);
+          setAttributes(input, { type: "text", minlength: 3, name: "last_name", required: "" });
+          break;
+
+        case 2:
+          label.setAttribute("for", "user_email");
+          label.textContent = "Email";
+          label.appendChild(input);
+          setAttributes(input, { type: "email", name: "user_email", required: "" });
+          break;
+
+        case 3:
+          label.setAttribute("for", "user_phone");
+          label.textContent = "Phone";
+          label.appendChild(input);
+          setAttributes(input, { type: "phone", name: "user_phone", required: "" });
+          break;
+
+        case 4:
+          label.setAttribute("for", "date");
+          label.textContent = "Select the date:";
+          label.appendChild(input);
+          setAttributes(input, { type: "date", id: "date", name: "reservation", value: "2023-01-01", min: "2023-01-01", max: "2023-12-31" });
+      }
+    }
+    return formModal;
+  }
+
+  function createSelectDropdown(arg) {
+    const form = document.querySelector("form");
+    const formGroup = document.createElement("div");
+    const selectElementTypeReservation = document.createElement("select");
+    const dialogButton = document.createElement("button");
+    dialogButton.className = "submit";
+    dialogButton.setAttribute("type", "submit");
+    dialogButton.textContent = "SUBMIT";
+    formGroup.className = "form-group";
+
+    const label = document.createElement("label");
+    label.setAttribute("for", "reservation-select");
+    label.textContent = "Choose a type of a reservation:";
+    form.appendChild(formGroup);
+    formGroup.appendChild(label);
+    form.appendChild(dialogButton);
+
+    selectElementTypeReservation.setAttribute("name", "reservation");
+    formGroup.appendChild(selectElementTypeReservation);
+
+    for (let i = 0; i < arg; i++) {
+      const option = document.createElement("option");
+
+      switch (i) {
+        case 0:
+          option.setAttribute("value", "");
+          option.textContent = "Please choose an option";
+          selectElementTypeReservation.appendChild(option);
+          break;
+
+        case 1:
+          option.setAttribute("value", "dinner");
+          option.textContent = "Dinner";
+          selectElementTypeReservation.appendChild(option);
+          break;
+
+        case 2:
+          option.setAttribute("value", "birthday/private party");
+          option.textContent = "Birthday/Private Party";
+          selectElementTypeReservation.appendChild(option);
+          break;
+
+        case 3:
+          option.setAttribute("value", "anniversary");
+          option.textContent = "Anniversary";
+          selectElementTypeReservation.appendChild(option);
+          break;
+
+        case 4:
+          option.setAttribute("value", "meeting");
+          option.textContent = "Meeting";
+          selectElementTypeReservation.appendChild(option);
+
+          break;
+        case 5:
+          option.setAttribute("value", "weeding");
+          option.textContent = "Weeding";
+          selectElementTypeReservation.appendChild(option);
+          break;
+      }
+    }
+    return form;
+  }
+
+  function modalFunctions() {
+    const modal = document.querySelector(".modal");
+    const openModal = document.querySelector(".open-button");
+
+    openModal.addEventListener("click", () => {
+      modal.showModal();
+    });
+  }
+
+  function setAttributes(el, attrs) {
+    Object.keys(attrs).forEach((key) => el.setAttribute(key, attrs[key]));
+  }
   return homePageSection;
 }
 
@@ -198,7 +428,9 @@ function loadHome() {
   const contentContainer = document.querySelector("#content");
   contentContainer.appendChild(appendCarousel());
   contentContainer.appendChild(createWebsiteColumns());
-  contentContainer.appendChild(createHomeContent());
+  contentContainer.appendChild(createHomeDiscountContent());
+  contentContainer.appendChild(createMakeReservation());
+  contentContainer.appendChild(createReservationModal());
 }
 
 export default loadHome;

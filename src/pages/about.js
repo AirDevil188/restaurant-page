@@ -47,7 +47,7 @@ function createParaInformation() {
   secondColumn.appendChild(aboutUsContainer);
   const paraAboutUs = document.createElement("p");
   aboutUsContainer.appendChild(paraAboutUs);
-  paraAboutUs.textContent = "Since  1st of January 2000. the quality was always our imperative. We started as a small pub in a relative small town in Serbia, called Apatin. What started as a family job, turned out to be something more then that. Our vision is that every costumer walks out happy! And after more then twenty years of experience we are still looking to innovate and learn new things.";
+  paraAboutUs.textContent = "The quality was always our imperative. We started as a small pub in a relative small town in Serbia, called Apatin. What started as a family job, turned out to be something more than that. Our vision is that every costumer walks out happy! And after more than twenty years of experience we are still looking to innovate and learn new things.";
 
   return aboutPageSection;
 }

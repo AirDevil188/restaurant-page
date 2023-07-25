@@ -51,7 +51,7 @@ section {
 }
 
 section h2 {
-  font-size: 3rem;
+  font-size: 2.8rem;
   text-transform: uppercase;
   padding: 1rem;
   font-family: var(--secondary-font);
@@ -82,6 +82,11 @@ section p {
   letter-spacing: 0.2rem;
   font-size: 1rem;
   text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: goldenrod;
 }
 
 /* lightbox */
@@ -148,6 +153,32 @@ header {
 #header-logo {
   max-width: 314px;
   max-height: 32px;
+}
+
+/* footer */
+footer {
+  background-color: #000000;
+  margin-top: 5rem;
+  justify-items: center;
+  display: grid;
+}
+
+.footer-container {
+  height: 50px;
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-container p {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.footer-container img {
+  width: 50px;
+  height: 50px;
+  padding: 0.5rem;
 }
 
 /* navigation styling across all the breakpoints */
@@ -232,7 +263,7 @@ textarea {
   max-width: 220px;
   margin-top: 1px;
   border: 1px solid var(--border-color);
-  resize: none;
+  resize: vertical;
 }
 
 .form-button-container {
@@ -373,9 +404,8 @@ fieldset {
 .carousel {
   position: relative;
   height: 600px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  padding: 0.5rem;
 }
 
 .carousel-image {
@@ -416,15 +446,15 @@ fieldset {
 }
 
 .carousel-button--left {
-  left: -40px;
+  left: 10px;
 }
 
 .carousel-button--right {
-  right: -40px;
+  right: 10px;
 }
 
 .carousel-button img {
-  width: 25px;
+  width: 35px;
 }
 
 .carousel-nav {
@@ -461,6 +491,93 @@ fieldset {
   margin-top: 5rem;
 }
 
+/* discount section */
+.discount-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.items-discount {
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: 5rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.regular-price-item {
+  font-size: 1.5rem;
+  text-decoration: line-through;
+}
+
+.discount-price-item {
+  font-size: 2rem;
+  font-weight: 400;
+  color: green;
+}
+
+/* reserve section */
+.reservation-container {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+.reservation-button {
+  width: 250px;
+  height: 60px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  font-family: var(--secondary-font);
+}
+
+/* modal - reservation form */
+
+.modal {
+  width: 500px;
+  padding: 1rem;
+  border: 3px solid #9c6f44;
+  overflow: hidden;
+}
+
+.modal form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.form-group {
+  display: grid;
+  justify-items: center;
+  padding: 0.5rem;
+}
+
+select {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal form {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.submit {
+  border: 1px solid var(--border-color);
+  font-family: var(--secondary-font);
+  width: 150px;
+  height: 33px;
+}
+
+.modal::backdrop {
+  background-color: white;
+  opacity: 1;
+}
 /* for tablet */
 @media (min-width: 550px) {
   nav ul {
@@ -491,6 +608,10 @@ fieldset {
     padding: 2rem;
   }
 }
+
+/* home page */
+
+/* discount section */
 
 /* for desktop */
 @media (min-width: 800px) {
@@ -604,4 +725,13 @@ fieldset {
   }
 
   /* home page */
+
+  /* discount section */
+
+  .items-discount {
+    flex-flow: row nowrap;
+    gap: 5rem;
+  }
+
+  /* reservation form */
 }

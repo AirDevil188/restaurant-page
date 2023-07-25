@@ -3,6 +3,7 @@ import loadHome from "./home";
 import loadMenu from "./menu";
 import loadContact from "./contact";
 import loadAbout from "./about";
+import gitLogo from "../assets/github-mark-white.svg";
 
 function createHeader() {
   const header = document.createElement("header");
@@ -69,11 +70,23 @@ const clearContentContainer = () => {
 
 function createFooter() {
   const footer = document.createElement("footer");
-
+  const footerContainer = document.createElement("div");
   const copyright = document.createElement("p");
+  const linkGitHub = document.createElement("p");
+  const aHyperLink = document.createElement("a");
+  const gitHubLogo = document.createElement("img");
+  gitHubLogo.src = gitLogo;
+
+  footerContainer.className = "footer-container";
   copyright.className = "copyright";
-  copyright.textContent = new Date().getFullYear();
-  footer.appendChild(copyright);
+  copyright.textContent = "© " + new Date().getFullYear();
+  aHyperLink.setAttribute("href", "https://github.com/AirDevil188");
+  aHyperLink.textContent = "AirDevil188";
+  footer.appendChild(footerContainer);
+  footerContainer.appendChild(gitHubLogo);
+  footerContainer.appendChild(linkGitHub);
+  linkGitHub.appendChild(aHyperLink);
+  footerContainer.appendChild(copyright);
 
   return footer;
 }
@@ -91,7 +104,6 @@ function loadWebsite() {
 
   const menuNavigation = document.querySelectorAll("#menu-navigation");
   menuNavigation.forEach((button) => {
-    console.log(button);
     button.addEventListener("click", (e) => {
       console.log(e.target.id);
 
