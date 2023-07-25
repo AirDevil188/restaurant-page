@@ -285,6 +285,9 @@ function createReservationModal() {
   const secondColumn = document.querySelector(".second-column");
 
   const dialogModal = document.createElement("dialog");
+  const closeDialogButton = document.createElement("button");
+  closeDialogButton.setAttribute("type", "button");
+  closeDialogButton.classList.add("close", "close-button");
 
   dialogModal.id = "form-modal";
   dialogModal.className = "modal";
@@ -296,6 +299,9 @@ function createReservationModal() {
 
   function createFormReservation(arg) {
     const formModal = document.createElement("form");
+    formModal.appendChild(closeDialogButton);
+    closeDialogButton.textContent = "CLOSE MODAL";
+    closeDialogButton.classList.add("submit-button", "close-button");
 
     for (let i = 0; i < arg; i++) {
       const formGroup = document.createElement("div");
@@ -349,6 +355,7 @@ function createReservationModal() {
     const form = document.querySelector("form");
     const formGroup = document.createElement("div");
     const selectElementTypeReservation = document.createElement("select");
+
     const dialogButton = document.createElement("button");
     dialogButton.className = "submit";
     dialogButton.setAttribute("type", "submit");
@@ -358,6 +365,7 @@ function createReservationModal() {
     const label = document.createElement("label");
     label.setAttribute("for", "reservation-select");
     label.textContent = "Choose a type of a reservation:";
+
     form.appendChild(formGroup);
     formGroup.appendChild(label);
     form.appendChild(dialogButton);
@@ -412,9 +420,14 @@ function createReservationModal() {
   function modalFunctions() {
     const modal = document.querySelector(".modal");
     const openModal = document.querySelector(".open-button");
+    const closeModal = document.querySelector(".close-button");
 
     openModal.addEventListener("click", () => {
       modal.showModal();
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.close();
     });
   }
 

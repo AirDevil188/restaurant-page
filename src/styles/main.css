@@ -271,11 +271,13 @@ textarea {
   justify-content: center;
 }
 
-.submit-button {
+.submit-button,
+.close {
   border: 1px solid var(--border-color);
   font-family: var(--secondary-font);
   width: 150px;
   height: 33px;
+  cursor: pointer;
 }
 
 fieldset {
@@ -365,6 +367,7 @@ fieldset {
 .food-container-2 {
   display: grid;
   border: 2px solid #9c6f44;
+  margin: 0.2rem;
 }
 
 .food-list p {
