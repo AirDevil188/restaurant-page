@@ -1,8 +1,8 @@
 
-# Project Title
+# Restaurant Page
 
 
-Restaurant Page
+
 
 This is a small project for "The Odin Project". The main focus here was to learn how to setup Wepack and how to organize files of the website/project. And then, to make a simple "restuarant page."  But with DOM manipulation  using only JavaScript. 
 
